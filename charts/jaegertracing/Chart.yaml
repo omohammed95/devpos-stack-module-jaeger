@@ -4,7 +4,7 @@
 ---
 apiVersion: "v2"
 name: "jaeger"
-version: "1"
+version: "0"
 dependencies:
   - name: "jaeger"
     version: "0.71.2" # Fix the major version only.

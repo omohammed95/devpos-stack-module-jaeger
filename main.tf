@@ -13,7 +13,7 @@ resource "argocd_project" "this" {
 
   spec {
     description  = "Jaeger application project"
-    source_repos = ["https://github.com/omohammed/devops-stack-module-jaeger.git"]
+    source_repos = ["https://github.com/omohammed95/devpos-stack-module-jaeger.git"]
 
     destination {
       name      = "in-cluster"
@@ -52,7 +52,7 @@ resource "argocd_application" "this" {
     project = argocd_project.this.metadata.0.name
 
     source {
-      repo_url        = "https://github.com/omohammed/devops-stack-module-jaeger.git"
+      repo_url        = "https://github.com/omohammed95/devpos-stack-module-jaeger.git"
       path            = "charts/jaegertracing"
       target_revision = var.target_revision
       helm {

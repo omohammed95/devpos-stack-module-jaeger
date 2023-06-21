@@ -1,0 +1,36 @@
+name: Helm Chart Checks
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  check-charts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v1
+
+      - name: Install Helm dependencies
+        run: helm dependency update
+
+      - name: Get latest chart version
+        run: |
+          latest_version=$(helm search repo jaegertracing/jaeger --output=json | jq -r '.[0].version')
+          echo "::set-output name=chart_version::$latest_version"
+
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.TEST_AUTO_UPGRADE_HELM }}
+          branch: update-charts
+          commit-message: "Update Helm chart versions"
+          title: "Update Helm chart versions"
+          body: |
+            This PR updates the Helm chart versions to the latest available.
+            The charts were updated to version ${{ steps.get-chart-version.outputs.chart_version }}.
+          branch-suffix: timestamp
+
