@@ -1,36 +1,50 @@
-name: Helm Chart Checks
+name: Upgrade helm charts minor versions
+ 
 on:
-  schedule:
-    - cron: "0 0 * * *"
-
+ schedule:
+   - cron: "0 8 * * 1"   # weekly on 08:00 Monday
+ 
 jobs:
-  check-charts:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Helm
-        uses: azure/setup-helm@v1
-
-      - name: Install Helm dependencies
-        run: helm dependency update
-
-      - name: Get latest chart version
-        run: |
-          latest_version=$(helm search repo jaegertracing/jaeger --output=json | jq -r '.[0].version')
-          echo "::set-output name=chart_version::$latest_version"
-
-      - name: Create PR
-        uses: peter-evans/create-pull-request@v3
-        with:
-          token: ${{ secrets.TEST_AUTO_UPGRADE_HELM }}
-          branch: update-charts
-          commit-message: "Update Helm chart versions"
-          title: "Update Helm chart versions"
-          body: |
-            This PR updates the Helm chart versions to the latest available.
-            The charts were updated to version ${{ steps.get-chart-version.outputs.chart_version }}.
-          branch-suffix: timestamp
-
+ upgrade-helm-charts:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Checkout
+       uses: actions/checkout@v2
+       with:
+         fetch-depth: 0
+ 
+     - name: Set up Helm
+       uses: azure/setup-helm@v1
+       with:
+         version: v3.7.2
+ 
+     - uses: actions/setup-python@v2
+       with:
+         python-version: 3.7
+      
+     - name: install pyaml
+       run: |
+         pip3 install pyaml==21.10.1
+ 
+     - name: install updateCli
+       run: |
+         curl -sL -o /tmp/updatecli_amd64.deb https://github.com/updatecli/updatecli/releases/download/v0.24.0/updatecli_amd64.deb
+         sudo apt install /tmp/updatecli_amd64.deb
+ 
+     - name: Run chart bumper script
+       run: |
+         python scripts/chart_bumper.py
+         rm -f manifest.yaml
+ 
+     - name: Create Pull Request
+       uses: peter-evans/create-pull-request@v4
+       with:
+         commit-message: "feat: upgrade helm charts"
+         title: "chore: upgrade helm charts minor versions"
+         body: |
+           Automatic upgrade of helm chart minor versions using https://github.com/updatecli/updatecli
+         branch: upgrade-helm-charts-minors
+         base: main
+         reviewers: |
+           omohammde95
+           # my teammates
