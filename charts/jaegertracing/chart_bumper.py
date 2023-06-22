@@ -3,6 +3,11 @@ import subprocess
 import yaml
 import os
 
+# Get the absolute path of the current script
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Specify the path to the chart relative to the current script directory
+path_chart = os.path.join(current_dir, "charts/jaegertracing")
 
 # Add charts here where it is known that higher versions are not
 # yet stable or that you would like to disable automatic upgrades for
