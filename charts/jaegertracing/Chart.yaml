@@ -5,6 +5,7 @@
 apiVersion: v2
 description: Helm chart to deploy Jaeger
 name: jaeger
+version: 0.0.2
 dependencies:
   - name: jaeger
     repository: "https://jaegertracing.github.io/helm-charts"
