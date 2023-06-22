@@ -12,7 +12,7 @@ targets:
     kind: helmChart
     spec:
       name: "charts/jaegertracing"
-      file: "Chart.yaml"
-      key: "$..dependencies[0].version"
+      file: "charts/jaegertracing/Chart.yaml"
+      key: "dependencies[0].version"
       versionIncrement: "patch"
 
