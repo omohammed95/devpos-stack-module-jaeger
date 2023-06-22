@@ -54,7 +54,7 @@ targets:
        name: Bump Chart dependencies
        kind: helmChart
        spec:
-           Name: "{path_chart}"
+           name: "{path_chart}"
            file: "Chart.yaml"
            key: "dependencies[{i}].version"
            versionIncrement: "patch"
