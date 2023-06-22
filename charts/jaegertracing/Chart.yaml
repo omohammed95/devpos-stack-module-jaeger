@@ -2,7 +2,6 @@
 # dependencies. You can then run `helm dependency update` on this folder and Helm will take care to populate the charts 
 # subfolder with every chart packaged in a `.tar.gz`.
 ---
-
 apiVersion: v2
 description: Helm chart to deploy Jaeger
 name: jaeger
