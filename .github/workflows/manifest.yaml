@@ -2,7 +2,7 @@ sources:
   latestMinorRelease:
     kind: helmChart
     spec:
-      url: "https://kubernetes-sigs.github.io/external-dns/"
+      url: "https://jaegertracing.github.io/helm-charts"
       name: "jaeger"
       version: "0.*.*"
 conditions: {}
@@ -11,7 +11,7 @@ targets:
     name: Bump Chart dependencies
     kind: helmChart
     spec:
-      Name: "charts/jaeger"
+      Name: "charts/jaegertracing"
       file: "Chart.yaml"
       key: "dependencies[0].version"
       versionIncrement: "patch"
