@@ -39,6 +39,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "feat: Upgrade Helm Chart"
           title: "chore: Upgrade Helm Chart"
           body: |
