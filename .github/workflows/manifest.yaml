@@ -11,7 +11,7 @@ targets:
     name: Bump Chart dependencies
     kind: helmChart
     spec:
-      name: "charts/jaegertracing"
+      Name: "charts/jaegertracing"
       file: "Chart.yaml"
       key: "dependencies[0].version"
       versionIncrement: "patch"
