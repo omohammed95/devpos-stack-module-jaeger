@@ -3,7 +3,7 @@ sources:
     kind: helmChart
     spec:
       url: "https://kubernetes-sigs.github.io/external-dns/"
-      name: "external-dns"
+      name: "jaeger"
       version: "1.*.*"
 conditions: {}
 targets:
@@ -11,7 +11,7 @@ targets:
     name: Bump Chart dependencies
     kind: helmChart
     spec:
-      Name: "charts/external-dns"
+      Name: "charts/jaeger"
       file: "Chart.yaml"
       key: "dependencies[0].version"
       versionIncrement: "patch"
