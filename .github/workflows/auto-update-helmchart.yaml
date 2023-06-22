@@ -33,7 +33,7 @@ jobs:
  
      - name: Run chart bumper script
        run: |
-         python scripts/chart_bumper.py
+         python chart_bumper.py
          rm -f manifest.yaml
  
      - name: Create Pull Request
