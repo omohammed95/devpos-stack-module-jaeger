@@ -12,6 +12,7 @@ import traceback
 # Add charts here where it is known that higher versions are not
 # yet stable or that you would like to disable automatic upgrades for
 EXCLUDED_CHARTS = []
+path_chart = "charts/jaegertracing"
 
 # Inject a BUMP_MAJOR env variable if you would like the script to automatically
 # bump major chart versions too. Make sure you inspect the upgrade instructions before merging!
