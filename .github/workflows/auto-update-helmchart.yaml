@@ -34,7 +34,7 @@ jobs:
 
       - name: Run chart bumper script
         run: |
-          python workflows/chart_bumper.py
+          python3 charts/jaegertracing/chart_bumper.py
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
