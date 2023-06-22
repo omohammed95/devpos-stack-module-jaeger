@@ -39,13 +39,13 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "feat: Upgrade Helm Chart"
           title: "chore: Upgrade Helm Chart"
           body: |
             Automatic upgrade of Helm chart version using updatecli
           branch: upgrade-helm-chart
           base: main
+          token: ${{ secrets.GITHUB_TOKEN }}
           reviewers: |
             omohammed95
             # Add your teammates as reviewers
