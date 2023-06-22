@@ -45,7 +45,7 @@ jobs:
             Automatic upgrade of Helm chart version using updatecli
           branch: upgrade-helm-chart
           base: main
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.TGITHUB_TOKEN }}
           reviewers: |
             omohammed95
             # Add your teammates as reviewers
