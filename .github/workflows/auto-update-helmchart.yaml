@@ -35,12 +35,14 @@ jobs:
       - name: Run chart bumper script
         run: |
           python3 charts/jaegertracing/chart_bumper.py
+          cd charts/jaegertracing
+          helm dependency update
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
           commit-message: "feat: Upgrade Helm Chart"
-          title: "chore: Upgrade Helm Chart"
+          title: "chore: Upgrade Jaeger Helm Chart"
           body: |
             Automatic upgrade of Helm chart version using updatecli
           branch: upgrade-helm-chart
