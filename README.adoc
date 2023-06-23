@@ -1,3 +1,4 @@
+= This module is not yet ready for production 
 = devops-stack-module-template
 // Document attributes to replace along the document
 // Here you can define variables for something that keeps repeating along the text
