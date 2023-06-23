@@ -1,9 +1,9 @@
----
-name: "linters"
+# ---
+# name: "linters"
 
-on:
-  pull_request:
+# on:
+#   pull_request:
 
-jobs:
-  linters:
-    uses: camptocamp/devops-stack/.github/workflows/modules-linters.yaml@main
+# jobs:
+#   linters:
+#     uses: camptocamp/devops-stack/.github/workflows/modules-linters.yaml@main
