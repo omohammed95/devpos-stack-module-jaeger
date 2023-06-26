@@ -19,8 +19,8 @@ EXCLUDED_CHARTS = []
 BUMP_MAJOR = os.environ.get("BUMP_MAJOR") == "true"
 
 # Path to the chart directory
-CHART_PATH = "charts/jaegertracing"
-
+#CHART_PATH = "charts/jaegertracing"
+CHART_PATH = os.environ.get("CHART_PATH", "")
 def update_chart(path_chart: str):
     """
     Given a path to a helm chart. Bump the version of the dependencies of this chart
@@ -75,7 +75,9 @@ targets:
         subprocess.check_output("updatecli apply --config charts/jaegertracing/manifest.yaml".split(" "))
 
 if __name__ == "__main__":
-
     # Update the chart path with the actual path to your chart
-    path_chart = CHART_PATH
-    update_chart(path_chart)
+    path_chart = os.environ.get("CHART_PATH")
+    if path_chart:
+        update_chart(path_chart)
+    else:
+        print("CHART_PATH environment variable not set.")
