@@ -47,7 +47,7 @@ jobs:
           title: "chore: Upgrade Jaeger Helm Chart"
           body: |
             Automatic upgrade of Helm chart version using updatecli
-          branch: upgrade-helm-chart-jaeger
+          branch: upgrade-helm-chart-jaeger-test
           base: main
           token: ${{ secrets.TGITHUB_TOKEN }}
           reviewers: |
