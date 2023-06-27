@@ -72,7 +72,7 @@ targets:
         with open(os.path.join(path_chart, "manifest.yaml"), "w") as f:
             f.write(manifest)
 
-        subprocess.check_output("updatecli apply --config charts/jaegertracing/manifest.yaml".split(" "))
+        subprocess.check_output("updatecli apply --config manifest.yaml".split(" "))
 
 if __name__ == "__main__":
     # Update the chart path with the actual path to your chart
