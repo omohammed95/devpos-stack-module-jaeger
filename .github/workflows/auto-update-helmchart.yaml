@@ -37,9 +37,6 @@ jobs:
           CHART_PATH: ${{ secrets.CHART_PATH }}
           BUMP_MAJOR: ${{ secrets.BUMP_MAJOR }}
         run: |
-          #python3 charts/jaegertracing/chart_bumper.py
-          #cd charts/jaegertracing
-          #helm dependency update
           python3 ${{ secrets.CHART_PATH }}/chart_bumper.py
           cd ${{ secrets.CHART_PATH }}
           helm dependency update
