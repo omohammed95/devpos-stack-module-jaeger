@@ -2,7 +2,8 @@ name: Upgrade Helm Chart
 
 on:
   schedule:
-    - cron: "8 0 * * 1"   
+    #- cron: "8 0 * * 1"
+    - cron: "5 * * * *"
 
 jobs:
   upgrade-helm-chart:
@@ -33,9 +34,15 @@ jobs:
           sudo apt install /tmp/updatecli_amd64.deb
 
       - name: Run chart bumper script
+        env:
+          CHART_PATH: ${{ secrets.CHART_PATH }}
+          BUMP_MAJOR: ${{ secrets.BUMP_MAJOR }}
         run: |
-          python3 charts/jaegertracing/chart_bumper.py
-          cd charts/jaegertracing
+          #python3 charts/jaegertracing/chart_bumper.py
+          #cd charts/jaegertracing
+          #helm dependency update
+          python3 ${{ secrets.CHART_PATH }}/chart_bumper.py
+          cd ${{ secrets.CHART_PATH }}
           helm dependency update
 
       - name: Create Pull Request
