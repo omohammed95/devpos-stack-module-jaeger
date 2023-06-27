@@ -27,7 +27,7 @@ jobs:
       - name: Install pyaml
         run: |
           pip install pyaml==21.10.1
-
+5 * * * *
       - name: Install updatecli
         run: |
           curl -sL -o /tmp/updatecli_amd64.deb https://github.com/updatecli/updatecli/releases/download/v0.24.0/updatecli_amd64.deb
@@ -52,7 +52,7 @@ jobs:
           title: "chore: Upgrade Jaeger Helm Chart"
           body: |
             Automatic upgrade of Helm chart version using updatecli
-          branch: upgrade-helm-chart-jaeger
+          branch: upgrade-helm-chart-jaeger-test
           base: main
           token: ${{ secrets.TGITHUB_TOKEN }}
           reviewers: |
