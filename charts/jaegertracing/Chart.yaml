@@ -1,12 +1,8 @@
-# Define the chart name you want for this chart, then define the charts you want to package in this module as 
-# dependencies. You can then run `helm dependency update` on this folder and Helm will take care to populate the charts 
-# subfolder with every chart packaged in a `.tar.gz`.
----
 apiVersion: v2
+dependencies:
+- name: jaeger
+  repository: https://jaegertracing.github.io/helm-charts
+  version: 0.71.7
 description: Helm chart to deploy Jaeger
 name: jaeger
-version: 0.0.2
-dependencies:
-  - name: jaeger
-    repository: "https://jaegertracing.github.io/helm-charts"
-    version: 0.71.2
+version: 0.0.3
