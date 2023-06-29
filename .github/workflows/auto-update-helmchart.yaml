@@ -2,7 +2,7 @@ name: Upgrade Helm Chart
 
 on:
   schedule:
-    - cron: "2 14 * * *"
+    - cron: "35 14 * * *"
 
 jobs:
   upgrade-helm-chart:
@@ -123,7 +123,7 @@ jobs:
         uses: peter-evans/create-pull-request@v4
         with:
           commit-message: "feat: Upgrade Helm Chart test"
-          title: "chore: Upgrade Jaeger Helm Chart"
+          title: "chore: Upgrade Jaeger Helm Chart Test"
           body: |
             Automatic upgrade of Helm chart version using updatecli
           branch: upgrade-helm-chart-jaeger-test
