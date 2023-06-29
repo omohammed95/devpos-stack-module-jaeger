@@ -2,7 +2,7 @@ name: Upgrade Helm Chart
 
 on:
   schedule:
-    - cron: "52 * * * 4"
+    - cron: "*/5 * * * *"
 
 jobs:
   upgrade-helm-chart:
