@@ -36,6 +36,7 @@ jobs:
           CHART_PATH: ${{ secrets.CHART_PATH }}
           BUMP_MAJOR: ${{ secrets.BUMP_MAJOR }}
         run: |
+          export CHART_PATH=${{ secrets.CHART_PATH }}
           python3 -c '
           # Place the content of your Python script here
 
