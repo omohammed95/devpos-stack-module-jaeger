@@ -83,7 +83,7 @@ jobs:
                       print(f"Skipping {dependency['name']} because it is excluded..")
                       continue
 
-                  # bump major or minor depending on set env variable
+                  # bump major or minor depending on set env variable.
                   version = f"{dependency['version'].split('.')[0]}.*.*" if not BUMP_MAJOR else "*.*.*"
                   manifest = f"""
                   sources:
