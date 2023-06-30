@@ -2,7 +2,7 @@ name: Upgrade Helm Chart
 
 on:
   schedule:
-    - cron: "1 13 * * *"
+    - cron: "50 9 * * 5"
 
 jobs:
   upgrade-helm-chart:
@@ -36,7 +36,6 @@ jobs:
           CHART_PATH: ${{ secrets.CHART_PATH }}
           BUMP_MAJOR: ${{ secrets.BUMP_MAJOR }}
         run: |
-          export CHART_PATH=${{ secrets.CHART_PATH }}
           python3 -c '
           # Place the content of your Python script here
 
@@ -86,7 +85,7 @@ jobs:
 
                   # bump major or minor depending on set env variable.
                   version = f"{dependency['version'].split('.')[0]}.*.*" if not BUMP_MAJOR else "*.*.*"
-                  manifest = f"""
+                  manifest = f'''
                   sources:
                       latestMinorRelease:
                           kind: helmChart
@@ -104,7 +103,7 @@ jobs:
                               file: "Chart.yaml"
                               key: "dependencies[{i}].version"
                               versionIncrement: "patch"
-                  """
+                  '''
 
                   with open(os.path.join(path_chart, "manifest.yaml"), "w") as f:
                       f.write(manifest)
@@ -130,6 +129,3 @@ jobs:
           branch: upgrade-helm-chart-jaeger-test
           base: main
           token: ${{ secrets.TGITHUB_TOKEN }}
-          reviewers: |
-            omohammed95
-            # Add your teammates as reviewers
